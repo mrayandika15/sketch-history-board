@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { Clock, Edit } from "lucide-react";
 import { useEditStateStore } from "@/stores/edit-state.store";
+import { Clock, Edit, PanelLeftCloseIcon } from "lucide-react";
 
 export function RightBar({
   content,
@@ -18,13 +18,21 @@ export function RightBar({
   footer: React.ReactNode;
   actions?: React.ReactNode[];
 }) {
-  const { isEditing, startEditing } = useEditStateStore();
+  const { isEditing, startEditing, stopEditing } = useEditStateStore();
 
   const EditActions = () => {
     if (isEditing && actions?.length > 0) {
-      return actions?.map((action, index) => (
-        <p key={`edit-action-${index}`}>{action}</p>
-      ));
+      return (
+        <div className="flex gap-2">
+          {actions?.map((action, index) => (
+            <p key={`edit-action-${index}`}>{action}</p>
+          ))}
+
+          <Button variant="ghost" size="icon" onClick={() => stopEditing()}>
+            <PanelLeftCloseIcon className="w-4 h-4" />
+          </Button>
+        </div>
+      );
     }
 
     return (

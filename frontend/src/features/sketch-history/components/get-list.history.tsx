@@ -36,6 +36,7 @@ export function GetListHistory({ versions }: HistoryPanelProps) {
             />
           )}
           <CardHistory
+            isEditing={isEditing}
             id={v.id}
             timestamp={v.timestamp}
             thumbnail={v.thumbnail}

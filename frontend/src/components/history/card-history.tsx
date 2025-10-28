@@ -7,6 +7,7 @@ export interface CardHistoryProps {
   thumbnail?: string;
   className?: string;
   onClick?: () => void;
+  isEditing?: boolean;
 }
 
 const CardHistory = ({
@@ -15,11 +16,16 @@ const CardHistory = ({
   thumbnail,
   className,
   onClick,
+  isEditing = false,
 }: CardHistoryProps) => {
   return (
     <Card
-      onClick={onClick}
-      className={cn("w-full cursor-pointer hover:bg-muted", className)}
+      onClick={() => !isEditing && onClick?.()}
+      className={cn(
+        "w-full cursor-pointer hover:bg-muted",
+        className,
+        isEditing && "bg-muted cursor-not-allowed"
+      )}
     >
       <CardContent className="p-2">
         <div className="w-full h-16 bg-muted rounded mb-2 flex items-center justify-center overflow-hidden">
