@@ -15,6 +15,8 @@ COPY . ./
 RUN pnpm exec prisma generate
 RUN pnpm run build
 
+# Ensure non-interactive mode for prune in Docker (no TTY)
+ENV CI=true
 # Prune dev dependencies to reduce image size
 RUN pnpm prune --prod
 
