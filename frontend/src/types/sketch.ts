@@ -7,6 +7,7 @@ export interface SketchHistory {
   name: string;
   data: SketchJSON;
   createdAt: string; // ISO string from backend
+  image?: string;
   updatedAt: string; // ISO string from backend
 }
 

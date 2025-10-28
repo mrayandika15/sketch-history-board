@@ -39,3 +39,25 @@ export const useFileUploadMutation = (
     ...restConfig,
   });
 };
+
+export type DeleteFileInput = { path: string };
+
+export const deleteFileUpload = async (
+  payload: DeleteFileInput
+): Promise<{ deleted: boolean }> => {
+  return apiClient.delete<{ deleted: boolean }>("/file-upload", payload);
+};
+
+export const useFileDeleteMutation = (
+  config: MutationConfig<typeof deleteFileUpload> = {} as any
+) => {
+  const { onSuccess, ...restConfig } = config || {};
+
+  return useMutation({
+    mutationFn: deleteFileUpload,
+    onSuccess: (...args) => {
+      onSuccess?.(...args);
+    },
+    ...restConfig,
+  });
+};

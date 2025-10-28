@@ -44,6 +44,11 @@ export function GetListHistory() {
   return (
     <>
       {isLoading && <Skeleton className="w-full h-12" />}
+      {data?.length === 0 && (
+        <div className="text-center text-muted-foreground">
+          No history found
+        </div>
+      )}
 
       {(data || []).map((item) => (
         <div key={item.id} className="flex items-center gap-2">
@@ -62,7 +67,7 @@ export function GetListHistory() {
             }}
             id={item.id}
             timestamp={new Date(item.createdAt)}
-            thumbnail={undefined}
+            thumbnail={item?.image}
           />
         </div>
       ))}
