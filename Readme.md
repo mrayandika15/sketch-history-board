@@ -36,27 +36,7 @@ sketch-history-board/
 Notes:
 - If packages are already installed, you can run `pnpm run dev` to start both dev servers concurrently.
 
-### Docker Container
-
-Run everything (PostgreSQL, backend, frontend) with a single command.
-
-- Start: `docker compose up -d`
-- Stop: `docker compose down`
-
-What it does:
-- Launches `postgres:16` with database `sketch_history`.
-- Starts backend dev server on `http://localhost:3000` (Prisma generate + migrate on start).
-- Starts frontend Vite dev server on `http://localhost:5173`.
-
-Environment defaults in Compose:
-- Backend `DATABASE_URL`: `postgresql://app:app@db:5432/sketch_history`
-- Backend `CORS_ORIGINS`: `http://localhost:5173`
-- Frontend `VITE_API_URL`: `http://localhost:3000/api`
-
-Notes:
-- File uploads are saved into `frontend/src/assets` (shared volume).
-- If you change dependencies, `docker compose up --build` rebuilds images.
-- For a clean rebuild: `docker compose down -v && docker compose up --build`.
+ 
 
 ## Features
 
