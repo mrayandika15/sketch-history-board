@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { useSketchStore } from "@/features/sketch/stores/sketch.store";
 import { useEffect, useRef, useState } from "react";
 import type { ReactSketchCanvasRef } from "react-sketch-canvas";
@@ -12,15 +13,29 @@ const SketchCanvas = () => {
     visible: boolean;
   }>({ x: 0, y: 0, visible: false });
 
-  const { setCanvasRef, strokeWidth, eraserMode, eraserWidth, strokeColor } =
-    useSketchStore();
+  const {
+    setCanvasRef,
+    strokeWidth,
+    eraserMode,
+    eraserWidth,
+    strokeColor,
+    setImage,
+  } = useSketchStore();
 
   useEffect(() => {
     setCanvasRef(ref.current);
-  }, [cursorPos]);
+  }, [cursorPos, setCanvasRef]);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleSaveImage = async () => {
+    const image = await ref.current?.exportImage("jpeg");
+    setImage(image as string);
+  };
+
+  const handleMouseMove = async (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = containerRef.current?.getBoundingClientRect();
+
+    await handleSaveImage();
+
     if (!rect) return;
     setCursorPos({
       x: e.clientX - rect.left,

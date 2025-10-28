@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
-import { SketchHistoryController } from './sketch-history.controller.js';
-import { SketchHistoryService } from './sketch-history.service.js';
-import { PrismaService } from '../../common/prisma.service.js';
+import { SketchHistoryController } from './sketch-history.controller';
+import { SketchHistoryService } from './sketch-history.service';
+import { PrismaService } from '../../common/prisma.service';
 
 @Module({
   controllers: [SketchHistoryController],

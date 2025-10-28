@@ -8,6 +8,7 @@ import { toast } from "sonner";
 export type CreateSketchHistoryInput = {
   name: string;
   data: CanvasPath[];
+  image?: string;
 };
 
 export const createSketchHistory = async (

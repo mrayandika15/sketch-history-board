@@ -6,9 +6,9 @@ import {
   Param,
   Post,
 } from '@nestjs/common';
-import { SketchHistoryService } from './sketch-history.service.js';
-import { CreateSketchHistoryDto } from './dto/create-sketch-history.dto.js';
-import { DeleteSketchHistoryDto } from './dto/delete-sketch-history.dto.js';
+import { SketchHistoryService } from './sketch-history.service';
+import { CreateSketchHistoryDto } from './dto/create-sketch-history.dto';
+import { DeleteSketchHistoryDto } from './dto/delete-sketch-history.dto';
 
 @Controller('sketch-history')
 export class SketchHistoryController {

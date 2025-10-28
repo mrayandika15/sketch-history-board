@@ -15,6 +15,8 @@ type SketchState = {
   setEraserWidth: (width: number) => void;
   setActiveWidth: (width: number) => void;
   setEraserMode: (on: boolean) => void;
+  image: string;
+  setImage: (image: string) => void;
 };
 
 export const useSketchStore = create<SketchState>((set, get) => ({
@@ -38,4 +40,6 @@ export const useSketchStore = create<SketchState>((set, get) => ({
   setEraserMode: (on) => {
     set({ eraserMode: on });
   },
+  image: "",
+  setImage: (image) => set({ image }),
 }));

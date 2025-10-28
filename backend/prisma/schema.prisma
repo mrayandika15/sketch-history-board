@@ -12,6 +12,7 @@ datasource db {
 model SketchHistory {
   id        Int      @id @default(autoincrement())
   name      String
+  image     String?
   data      Json
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

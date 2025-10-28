@@ -8,7 +8,7 @@ export class SketchHistoryService {
 
   async create(dto: CreateSketchHistoryDto) {
     const created = await this.prisma.sketchHistory.create({
-      data: { name: dto.name, data: dto.data },
+      data: { name: dto.name, data: dto.data, image: dto.image },
     });
     return created;
   }

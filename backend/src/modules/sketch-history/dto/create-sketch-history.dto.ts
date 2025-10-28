@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class CreateSketchHistoryDto {
   @IsString()
@@ -7,4 +7,8 @@ export class CreateSketchHistoryDto {
 
   @IsNotEmpty()
   data!: any;
+
+  @IsOptional()
+  @IsString()
+  image?: string;
 }
