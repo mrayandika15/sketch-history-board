@@ -1,0 +1,18 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Stores react-sketch-canvas export data with a human-readable name.
+// Prisma `Json` maps to Postgres JSONB.
+model SketchHistory {
+  id        Int      @id @default(autoincrement())
+  name      String
+  data      Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
