@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from "react";
-import { ReactSketchCanvas } from "react-sketch-canvas";
-import type { ReactSketchCanvasRef } from "react-sketch-canvas";
 import { useSketchStore } from "@/features/sketch/stores/sketch.store";
+import { useEffect, useRef, useState } from "react";
+import type { ReactSketchCanvasRef } from "react-sketch-canvas";
+import { ReactSketchCanvas } from "react-sketch-canvas";
 
 const SketchCanvas = () => {
   const ref = useRef<ReactSketchCanvasRef>(null);
@@ -16,8 +16,8 @@ const SketchCanvas = () => {
     useSketchStore();
 
   useEffect(() => {
-    if (ref.current) setCanvasRef(ref.current);
-  }, []);
+    setCanvasRef(ref.current);
+  }, [cursorPos]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = containerRef.current?.getBoundingClientRect();
@@ -43,14 +43,6 @@ const SketchCanvas = () => {
     setCursorPos((p) => ({ ...p, visible: false }));
   };
 
-  const handleSketchingTime = async () => {
-    if (!ref.current) return 0;
-
-    const time = await ref.current.getSketchingTime();
-    console.log({ time });
-    return time;
-  };
-
   const activeWidth = eraserMode ? eraserWidth : strokeWidth;
   const cursorBorderColor = eraserMode ? "#ef4444" : strokeColor; // red-500 for eraser, stroke color for pen
 
@@ -64,7 +56,6 @@ const SketchCanvas = () => {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <button onClick={handleSketchingTime}>Get Sketching Time</button>
         <ReactSketchCanvas
           ref={ref}
           style={{ width: "100%", height: "100%" }}

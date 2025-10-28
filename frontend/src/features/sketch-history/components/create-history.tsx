@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
-import { useCreateSketchHistoryMutation } from "@/features/sketch-history/api/create-history";
+import { useCreateSketchHistoryMutation } from "@/features/sketch-history/api/create-history-api";
 import { useSketchStore } from "@/features/sketch/stores/sketch.store";
+import { toast } from "sonner";
 
 const CreateHistory = () => {
   const { canvasRef } = useSketchStore();
@@ -9,15 +10,11 @@ const CreateHistory = () => {
 
   const handleSave = async () => {
     const name = `Version ${new Date().toLocaleString()}`;
-    const paths = await canvasRef?.exportPaths();
+    const paths = (await canvasRef?.exportPaths()) || [];
 
-    // if (paths?.length === 0) return toast.error("Canvas not found");
+    if (paths?.length === 0) return toast.error("Canvas not found");
 
-    const getTime = await canvasRef?.getSketchingTime();
-
-    console.log({ paths, canvas: canvasRef, getTime });
-
-    // await mutateAsync({ name, data: paths });
+    await mutateAsync({ name, data: paths });
   };
 
   return (
