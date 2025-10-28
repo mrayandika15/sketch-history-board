@@ -6,6 +6,7 @@ import SketchCanvas from "@/features/sketch/components/sketch-canvas";
 import SketchClearAction from "@/features/sketch/components/sketch-clear.action";
 import SketchEraserAction from "@/features/sketch/components/sketch-eraser-action";
 import SketchPenAction from "@/features/sketch/components/sketch-pen-action";
+import SketchPenSizeAction from "@/features/sketch/components/sketch-pen-size-action";
 import { useState } from "react";
 
 export function App() {
@@ -36,6 +37,7 @@ export function App() {
             <SketchPenAction />,
             <SketchEraserAction />,
             <SketchClearAction />,
+            <SketchPenSizeAction />,
           ]}
         />
         <SketchCanvas />
