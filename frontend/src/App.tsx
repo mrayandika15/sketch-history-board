@@ -1,7 +1,9 @@
+import { HistoryBarSide } from "@/components/history/history-bar-side";
 import ActionBar from "@/components/sketch/action-bar";
 import ToolBar from "@/components/sketch/toolbar";
 import Header from "@/components/ui/header";
 import { GetListHistory } from "@/features/sketch-history/components/get-list.history";
+import GetHistoryMetaData from "@/features/sketch-history/components/get-meta-history";
 import SketchCanvas from "@/features/sketch/components/sketch-canvas";
 import SketchClearAction from "@/features/sketch/components/sketch-clear.action";
 import SketchEraserAction from "@/features/sketch/components/sketch-eraser-action";
@@ -44,7 +46,10 @@ export function App() {
         <ActionBar />
       </div>
 
-      <GetListHistory versions={versions} />
+      <HistoryBarSide
+        footer={<GetHistoryMetaData />}
+        content={<GetListHistory versions={versions} />}
+      />
     </div>
   );
 }
