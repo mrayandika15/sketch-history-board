@@ -100,3 +100,9 @@ export async function del<T = any>(
   const cfg: AxiosRequestConfig = { ...(config || {}), data };
   return http.delete(url, cfg).then((res) => res as unknown as T);
 }
+
+export const apiClient = {
+  get,
+  post,
+  delete: del,
+};

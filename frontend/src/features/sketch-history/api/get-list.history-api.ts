@@ -1,4 +1,4 @@
-import { apiClient } from "@/lib/interceptors";
+import { apiClient } from "@/lib/axios";
 import { SKETCH_HISTORY, type QueryConfig } from "@/lib/react-query";
 import type { SketchHistoryListResponse } from "@/types/sketch";
 import { queryOptions, useQuery } from "@tanstack/react-query";
@@ -7,10 +7,10 @@ export type UseSketchHistoryQueryOptions = {
   queryConfig?: QueryConfig<ReturnType<typeof getSketchHistoryQueryOption>>;
 };
 
-export const getSketchHistoryList = async (): Promise<SketchHistoryListResponse> => {
-  // Base URL includes /api, so call path without /api prefix
-  return apiClient.get<SketchHistoryListResponse>("/sketch-history");
-};
+export const getSketchHistoryList =
+  async (): Promise<SketchHistoryListResponse> => {
+    return apiClient.get<SketchHistoryListResponse>("/sketch-history");
+  };
 
 export const getSketchHistoryQueryOption = () => {
   return queryOptions({

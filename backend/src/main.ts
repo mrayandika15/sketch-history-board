@@ -13,6 +13,21 @@ async function bootstrap() {
 
   app.useGlobalFilters(new HttpResponseExceptionFilter());
 
+  const allowedOrigins = (
+    process.env.CORS_ORIGINS ??
+    'http://localhost:5173,http://127.0.0.1:5173,http://localhost:4173'
+  )
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean);
+
+  app.enableCors({
+    origin: allowedOrigins,
+    credentials: true,
+    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Accept', 'Authorization'],
+  });
+
   app.setGlobalPrefix('api');
   await app.listen(process.env.PORT ?? 3000);
 }
