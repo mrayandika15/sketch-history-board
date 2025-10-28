@@ -3,6 +3,7 @@ import ToolBar from "@/components/sketch/toolbar";
 import Header from "@/components/ui/header";
 import { RightBar } from "@/components/ui/right-bar";
 import CreateHistory from "@/features/sketch-history/components/create-history";
+import SketchUndoRedo from "@/features/sketch-history/components/sketch-undo-redo";
 import DeleteHistory from "@/features/sketch-history/components/delete-history";
 import { GetListHistory } from "@/features/sketch-history/components/get-list.history";
 import SketchCanvas from "@/features/sketch/components/sketch-canvas";
@@ -26,7 +27,7 @@ export function App() {
           ]}
         />
         <SketchCanvas />
-        <ActionBar actions={[<CreateHistory />]} />
+        <ActionBar actions={[<SketchUndoRedo />, <CreateHistory />]} />
       </div>
 
       <RightBar
