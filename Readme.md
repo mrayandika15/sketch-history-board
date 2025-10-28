@@ -1,3 +1,5 @@
+![Sketch History Board](sketch-board.png)
+
 # Sketch History Board
 
 A full-stack drawing and versioning app with React (frontend) and NestJS (backend). Draw on a canvas, save versions (JSON paths plus optional image thumbnail), preview and restore versions, and bulk-delete versions with optional file cleanup.
@@ -19,24 +21,25 @@ sketch-history-board/
 
 ### Development server
 
-1) Start PostgreSQL
-   - Local DB: ensure Postgres is running.
-   - Or Docker: `docker compose up -d db` (see Docker Container).
+1. Start PostgreSQL
 
-2) Install root packages
+   - Local DB: ensure Postgres is running.
+
+2. Install root packages
+
    - From root: `pnpm install` (installs root devDependencies like `concurrently`).
 
-3) Prepare env and app dependencies
+3. Prepare env and app dependencies
+
    - From root: `pnpm run setup`
    - This creates `.env` from `.env.example`, installs backend/frontend deps, generates Prisma client, and applies migrations.
 
-4) Start both servers
+4. Start both servers
    - From root: `pnpm run start` (installs missing deps and starts backend+frontend dev servers).
 
 Notes:
-- If packages are already installed, you can run `pnpm run dev` to start both dev servers concurrently.
 
- 
+- If packages are already installed, you can run `pnpm run dev` to start both dev servers concurrently.
 
 ## Features
 
