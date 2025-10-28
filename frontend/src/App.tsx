@@ -1,4 +1,4 @@
-import { HistoryBarSide } from "@/components/history/history-bar-side";
+import { RightBar } from "@/components/ui/right-bar";
 import ActionBar from "@/components/sketch/action-bar";
 import ToolBar from "@/components/sketch/toolbar";
 import Header from "@/components/ui/header";
@@ -11,6 +11,7 @@ import SketchEraserAction from "@/features/sketch/components/sketch-eraser-actio
 import SketchPenAction from "@/features/sketch/components/sketch-pen-action";
 import SketchPenSizeAction from "@/features/sketch/components/sketch-pen-size-action";
 import { useState } from "react";
+import { Clock } from "lucide-react";
 
 export function App() {
   const [versions, setVersions] = useState([
@@ -47,7 +48,10 @@ export function App() {
         <ActionBar />
       </div>
 
-      <HistoryBarSide
+      <RightBar
+        title="History"
+        desc="Saved versions"
+        icon={<Clock className="w-4 h-4 text-muted-foreground" />}
         actions={[<DeleteHistory />]}
         footer={<GetHistoryMetaData />}
         content={<GetListHistory versions={versions} />}

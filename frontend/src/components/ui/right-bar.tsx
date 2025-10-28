@@ -2,11 +2,18 @@ import { Button } from "@/components/ui/button";
 import { Clock, Edit } from "lucide-react";
 import { useEditStateStore } from "@/stores/edit-state.store";
 
-export function HistoryBarSide({
+export function RightBar({
   content,
   footer,
   actions = [],
+  title = "",
+  icon = <Clock className="w-4 h-4 text-muted-foreground" />,
+  desc = "",
 }: {
+  title?: string;
+  icon?: React.ReactNode;
+  desc?: string;
+
   content: React.ReactNode;
   footer: React.ReactNode;
   actions?: React.ReactNode[];
@@ -33,10 +40,10 @@ export function HistoryBarSide({
       <div className="border-b border-border px-4 py-4 flex justify-between items-center">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <Clock className="w-4 h-4 text-muted-foreground" />
-            <h2 className="font-semibold text-foreground">History</h2>
+            {icon}
+            <h2 className="font-semibold text-foreground">{title}</h2>
           </div>
-          <p className="text-xs text-muted-foreground">Saved versions</p>
+          <p className="text-xs text-muted-foreground">{desc}</p>
         </div>
         {actions?.length > 0 && <EditActions />}
       </div>
