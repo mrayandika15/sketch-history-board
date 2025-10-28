@@ -1,21 +1,44 @@
-import { Clock } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Clock, Edit } from "lucide-react";
+import { useEditStateStore } from "@/stores/edit-state.store";
 
 export function HistoryBarSide({
   content,
   footer,
+  actions = [],
 }: {
   content: React.ReactNode;
   footer: React.ReactNode;
+  actions?: React.ReactNode[];
 }) {
+  const { isEditing, startEditing } = useEditStateStore();
+
+  const EditActions = () => {
+    if (isEditing && actions?.length > 0) {
+      return actions?.map((action, index) => (
+        <p key={`edit-action-${index}`}>{action}</p>
+      ));
+    }
+
+    return (
+      <Button variant="ghost" size="icon" onClick={() => startEditing()}>
+        <Edit className="w-4 h-4" />
+      </Button>
+    );
+  };
+
   return (
-    <div className="w-64 border-l border-border bg-card flex flex-col">
+    <div className="w-72 border-l border-border bg-card flex flex-col">
       {/* Header */}
-      <div className="border-b border-border px-4 py-4">
-        <div className="flex items-center gap-2 mb-1">
-          <Clock className="w-4 h-4 text-muted-foreground" />
-          <h2 className="font-semibold text-foreground">History</h2>
+      <div className="border-b border-border px-4 py-4 flex justify-between items-center">
+        <div>
+          <div className="flex items-center gap-2 mb-1">
+            <Clock className="w-4 h-4 text-muted-foreground" />
+            <h2 className="font-semibold text-foreground">History</h2>
+          </div>
+          <p className="text-xs text-muted-foreground">Saved versions</p>
         </div>
-        <p className="text-xs text-muted-foreground">Saved versions</p>
+        {actions?.length > 0 && <EditActions />}
       </div>
 
       {/* Versions List */}

@@ -29,11 +29,13 @@ const CardHistory = ({
             className="w-full h-full object-cover"
           />
         </div>
-        <div className="w-full text-left">
-          <p className="text-xs font-medium text-foreground">Version {id}</p>
-          <p className="text-xs text-muted-foreground">
-            {formatTime(timestamp)}
-          </p>
+        <div className="flex gap-2">
+          <div className="w-full text-left">
+            <p className="text-xs font-medium text-foreground">Version {id}</p>
+            <p className="text-xs text-muted-foreground">
+              {formatTime(timestamp)}
+            </p>
+          </div>
         </div>
       </CardContent>
     </Card>

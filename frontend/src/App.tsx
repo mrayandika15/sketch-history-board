@@ -2,6 +2,7 @@ import { HistoryBarSide } from "@/components/history/history-bar-side";
 import ActionBar from "@/components/sketch/action-bar";
 import ToolBar from "@/components/sketch/toolbar";
 import Header from "@/components/ui/header";
+import DeleteHistory from "@/features/sketch-history/components/delete-history";
 import { GetListHistory } from "@/features/sketch-history/components/get-list.history";
 import GetHistoryMetaData from "@/features/sketch-history/components/get-meta-history";
 import SketchCanvas from "@/features/sketch/components/sketch-canvas";
@@ -47,6 +48,7 @@ export function App() {
       </div>
 
       <HistoryBarSide
+        actions={[<DeleteHistory />]}
         footer={<GetHistoryMetaData />}
         content={<GetListHistory versions={versions} />}
       />
