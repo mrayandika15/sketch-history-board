@@ -1,0 +1,16 @@
+{
+  "name": "sketch-history-board",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "env:prepare": "node scripts/env-prepare.js",
+    "setup": "pnpm install && pnpm run env:prepare && pnpm -C backend install && pnpm -C backend prisma:generate && pnpm -C backend prisma:migrate && pnpm -C frontend install",
+    "dev": "concurrently -n backend,frontend -c blue,green \"pnpm -C backend start:dev\" \"pnpm -C frontend dev\"",
+    "start": "pnpm run setup && pnpm run dev",
+    "backend:dev": "pnpm -C backend start:dev",
+    "frontend:dev": "pnpm -C frontend dev"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
