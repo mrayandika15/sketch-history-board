@@ -1,8 +1,9 @@
 import CardHistory from "@/components/history/card-history";
-import { useEditStateStore } from "@/stores/edit-state.store";
-import { useHistoryStore } from "@/features/sketch-history/stores/history.store";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Skeleton } from "@/components/ui/skeleton";
 import { useSketchHistoryQuery } from "@/features/sketch-history/api/get-list.history-api";
+import { useHistoryStore } from "@/features/sketch-history/stores/history.store";
+import { useEditStateStore } from "@/stores/edit-state.store";
 
 export function GetListHistory() {
   const isEditing = useEditStateStore((s) => s.isEditing);
@@ -10,7 +11,7 @@ export function GetListHistory() {
   const addId = useHistoryStore((s) => s.addId);
   const removeId = useHistoryStore((s) => s.removeId);
 
-  const { data, isLoading, isError } = useSketchHistoryQuery();
+  const { data, isLoading } = useSketchHistoryQuery();
 
   const handleCheck = (id: number, checked: boolean) => {
     if (checked) addId(id);
@@ -19,10 +20,8 @@ export function GetListHistory() {
 
   return (
     <>
-      {isLoading && <p className="text-xs text-muted-foreground">Loading...</p>}
-      {isError && (
-        <p className="text-xs text-destructive">Failed to load history.</p>
-      )}
+      {isLoading && <Skeleton className="w-full h-12" />}
+
       {(data || []).map((item) => (
         <div key={item.id} className="flex items-center gap-2">
           {isEditing && (

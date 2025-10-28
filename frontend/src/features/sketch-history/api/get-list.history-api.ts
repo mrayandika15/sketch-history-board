@@ -4,7 +4,7 @@ import type { SketchHistoryListResponse } from "@/types/sketch";
 import { queryOptions, useQuery } from "@tanstack/react-query";
 
 export type UseSketchHistoryQueryOptions = {
-  queryConfig?: QueryConfig<ReturnType<typeof getSketchHistoryQueryOption>>;
+  queryConfig?: QueryConfig<typeof getSketchHistoryQueryOption>;
 };
 
 export const getSketchHistoryList =

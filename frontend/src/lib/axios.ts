@@ -1,5 +1,6 @@
 import axios, { AxiosError } from "axios";
 import type { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { toast } from "sonner";
 
 type ApiResponse<T = unknown> = {
   success: boolean;
@@ -58,6 +59,7 @@ http.interceptors.response.use(
   (error: AxiosError) => {
     if (error.response) {
       const payload: any = error.response.data;
+      toast.error(payload?.message || error.message || "Request error");
       if (isApiResponse(payload)) {
         return Promise.reject({
           status: payload.status,
