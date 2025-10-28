@@ -3,13 +3,20 @@ import { Pen } from "lucide-react";
 import { useSketchStore } from "@/features/sketch/stores/sketch.store";
 
 const SketchPenAction = () => {
-  const { setEraserMode, setStrokeColor, setStrokeWidth, eraserMode } =
-    useSketchStore();
+  const {
+    setEraserMode,
+    setStrokeColor,
+    setStrokeWidth,
+    eraserMode,
+    canvasRef,
+  } = useSketchStore();
 
   const isActive = !eraserMode;
 
   const handleClick = () => {
     setEraserMode(false);
+    canvasRef?.eraseMode(false);
+
     setStrokeColor("#0f172a"); // default dark ink on light canvas
     setStrokeWidth(4);
   };

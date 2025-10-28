@@ -15,10 +15,6 @@ type SketchState = {
   setEraserWidth: (width: number) => void;
   setActiveWidth: (width: number) => void;
   setEraserMode: (on: boolean) => void;
-  clear: () => Promise<void> | void;
-  undo: () => Promise<void> | void;
-  redo: () => Promise<void> | void;
-  exportImage: (type?: ImageType) => Promise<string | undefined>;
 };
 
 export const useSketchStore = create<SketchState>((set, get) => ({
@@ -40,25 +36,6 @@ export const useSketchStore = create<SketchState>((set, get) => ({
       state.eraserMode ? { eraserWidth: width } : { strokeWidth: width }
     ),
   setEraserMode: (on) => {
-    const ref = get().canvasRef;
-    if (ref) ref.eraseMode(on);
     set({ eraserMode: on });
-  },
-
-  clear: async () => {
-    const ref = get().canvasRef;
-    if (ref) await ref.clearCanvas();
-  },
-  undo: async () => {
-    const ref = get().canvasRef;
-    if (ref) await ref.undo();
-  },
-  redo: async () => {
-    const ref = get().canvasRef;
-    if (ref) await ref.redo();
-  },
-  exportImage: async (type = "png") => {
-    const ref = get().canvasRef;
-    if (ref) return ref.exportImage(type);
   },
 }));

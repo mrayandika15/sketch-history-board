@@ -1,10 +1,8 @@
 import { useSketchStore } from "@/features/sketch/stores/sketch.store";
 
 const SketchPenSizeAction = () => {
-  const eraserMode = useSketchStore((s) => s.eraserMode);
-  const strokeWidth = useSketchStore((s) => s.strokeWidth);
-  const eraserWidth = useSketchStore((s) => s.eraserWidth);
-  const setActiveWidth = useSketchStore((s) => s.setActiveWidth);
+  const { eraserMode, eraserWidth, strokeWidth, setActiveWidth } =
+    useSketchStore();
 
   const value = eraserMode ? eraserWidth : strokeWidth;
 

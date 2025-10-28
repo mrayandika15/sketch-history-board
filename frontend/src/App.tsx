@@ -11,6 +11,7 @@ import SketchEraserAction from "@/features/sketch/components/sketch-eraser-actio
 import SketchPenAction from "@/features/sketch/components/sketch-pen-action";
 import SketchPenSizeAction from "@/features/sketch/components/sketch-pen-size-action";
 import { Clock } from "lucide-react";
+import CreateHistory from "@/features/sketch-history/components/create-history";
 
 export function App() {
   return (
@@ -26,7 +27,7 @@ export function App() {
           ]}
         />
         <SketchCanvas />
-        <ActionBar />
+        <ActionBar actions={[<CreateHistory />]} />
       </div>
 
       <RightBar

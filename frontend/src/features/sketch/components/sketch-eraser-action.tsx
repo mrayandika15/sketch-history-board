@@ -3,11 +3,15 @@ import { Eraser } from "lucide-react";
 import { useSketchStore } from "@/features/sketch/stores/sketch.store";
 
 const SketchEraserAction = () => {
-  const { setEraserMode, setEraserWidth, eraserMode } = useSketchStore();
+  const { setEraserMode, setEraserWidth, eraserMode, canvasRef } =
+    useSketchStore();
+
   const isActive = eraserMode;
 
   const handleClick = () => {
     setEraserMode(true);
+    canvasRef?.eraseMode(true);
+
     setEraserWidth(12);
   };
 

@@ -8,17 +8,16 @@ export const SKETCH_HISTORY = {
 } as const;
 // A lightweight override type to merge into query options returned by queryOptions()
 
-export type QueryConfig<T extends (...args: unknown[]) => unknown> = Omit<
+export type ApiFnReturnType<FnType extends (...args: any) => Promise<any>> =
+  Awaited<ReturnType<FnType>>;
+
+export type QueryConfig<T extends (...args: any[]) => any> = Omit<
   ReturnType<T>,
   "queryKey" | "queryFn"
 >;
 
-export type ApiFnReturnType<
-  FnType extends (...args: unknown[]) => Promise<unknown>
-> = Awaited<ReturnType<FnType>>;
-
 export type MutationConfig<
-  MutationFnType extends (...args: unknown[]) => Promise<unknown>
+  MutationFnType extends (...args: any) => Promise<any>
 > = UseMutationOptions<
   ApiFnReturnType<MutationFnType>,
   Error,

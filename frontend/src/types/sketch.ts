@@ -1,4 +1,6 @@
-export type SketchJSON = unknown; // react-sketch-canvas export JSON shape
+import type { CanvasPath } from "react-sketch-canvas";
+
+export type SketchJSON = CanvasPath[]; // react-sketch-canvas export JSON shape
 
 export interface SketchHistory {
   id: number;
